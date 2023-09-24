@@ -13,6 +13,7 @@ const technicianRouter = require('../api/technician/technicianRoute')
 const adminRouter = require('../api/admin/adminRoute');
 const employeeRouter = require('../api/employee/employeeRoute')
 const categoryRouter = require('../api/category/categoryRoute')
+const brandRouter = require('../api/brand/brandRoute')
 
 const authentication = require('../api/middleware/authentication')
 const app = express()
@@ -48,6 +49,7 @@ app.use('/api/v1/technicians', technicianRouter)
 
 app.use('/api/v1/employee', employeeRouter)
 app.use('/api/v1/category', categoryRouter)
+app.use('/api/v1/brand', brandRouter)
 
 // Back-end server connection
 app.listen(port, () => console.log(`Server connection established and running on port: ${port}`))
