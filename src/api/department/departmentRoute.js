@@ -3,10 +3,9 @@
 /*****************************************************/
 const express = require('express')
 const router = express.Router()
-const brandController = require("./brandController");
+const departmentController = require("./departmentController");
 
-router.get('/get_brands',brandController.getBrands)
-router.post('/add_brand', brandController.addBrand)
-// router.post('/edit_brand', brandController.addBrand)
+router.get('/get_department', departmentController.getDepartments)
+router.post('/add_department',departmentController.addDepartment)
 
 module.exports = router
