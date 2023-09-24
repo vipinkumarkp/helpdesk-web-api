@@ -1,5 +1,5 @@
 /*****************************************************/
-/* CREATED AND DEVELOPED BY MANNMOHAN */
+/* CREATED AND DEVELOPED BY VIPINKUMAR KP */
 /*****************************************************/
 const dbClient = require("../../config/db");
 const moment = require("moment");
