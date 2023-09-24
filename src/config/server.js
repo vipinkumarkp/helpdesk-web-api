@@ -22,7 +22,7 @@ require('dotenv').config()
 
 // Required variabls
 const port = process.env.PORT || 8000
-
+app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:4200', 'http://localhost:4000','http://localhost:3000', "http://codea-helpdesk.s3-website-ap-southeast-2.amazonaws.com"], credentials: true }))
 // App configuration
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({extended:false}))
