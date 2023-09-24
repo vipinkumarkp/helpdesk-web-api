@@ -15,6 +15,7 @@ const employeeRouter = require('../api/employee/employeeRoute')
 const categoryRouter = require('../api/category/categoryRoute')
 const brandRouter = require('../api/brand/brandRoute')
 const departmentRouter = require("../api/department/departmentRoute")
+const assetRouter = require("../api/asset/assetRoute")
 
 const authentication = require('../api/middleware/authentication')
 const app = express()
@@ -52,6 +53,8 @@ app.use('/api/v1/employee', employeeRouter)
 app.use('/api/v1/category', categoryRouter)
 app.use('/api/v1/brand', brandRouter)
 app.use('/api/v1/department', departmentRouter)
+app.use('/api/v1/asset', assetRouter)
+
 
 // Back-end server connection
 app.listen(port, () => console.log(`Server connection established and running on port: ${port}`))
