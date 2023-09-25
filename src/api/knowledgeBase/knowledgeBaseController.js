@@ -2,6 +2,7 @@
 /* CREATED AND DEVELOPED BY VIPINKUMAR KP */
 /*****************************************************/
 
+// DB required variables
 const dbClient    = require("../../config/db");
 const moment      = require("moment");
 
@@ -10,13 +11,13 @@ const currentDate   = new Date().toISOString();
 const fDate         = moment(currentDate);
 const formattedDate = fDate.format("YYYY-MM-DD HH:mm:ssZ");
 
-// Add department
-const addDepartment = async (req, res, next) => {
-     const { name } = req.body;
+// Add Knowledge Base
+const addKnowledge_Base = async (req, res, next) => {
+     const { title, description, status } = req.body;
   try {
     dbClient.query(
-      `SELECT * FROM department WHERE department_name = $1;`,
-      [name],
+      `SELECT * FROM knowledge_Base WHERE title = $1;`,
+      [title],
       (tErr, tRes) => {
         if (tErr) {
           res.status(400).json({
@@ -25,16 +26,18 @@ const addDepartment = async (req, res, next) => {
           });
         }
         if (tRes.rowCount > 0) {
-          res.status(201).json({ message: 'Department already exist!', data: tRes.rows });
+          res.status(201).json({ message: 'The knowledge base entry is already exist!', data: tRes.rows });
 
         } else {
 
 
             dbClient.query(
-            `INSERT INTO department (department_name)
-                VALUES ($1) RETURNING id;`,
+            `INSERT INTO knowledge_Base (title, description, status)
+                VALUES ($1, $2, $3) RETURNING id;`,
             [
-              name
+                title, 
+                description, 
+                status
             ],
             (tiErr, tiRes) => {
               if (tiErr) {
@@ -43,7 +46,7 @@ const addDepartment = async (req, res, next) => {
                   status: 0,
                 });
               }
-              res.status(201).json({ message: 'department Added Successfully!', data: tiRes });
+              res.status(201).json({ message: 'The knowledge_Base Added Successfully!', data: tiRes });
 
             }
           );
@@ -55,9 +58,9 @@ const addDepartment = async (req, res, next) => {
   }
 }
 
-// Get all department
-const getDepartments = (req, res, next) => {
-    dbClient.query("SELECT * FROM department", (err, response) => {
+// Get all Knowledge Bases
+const getKnowledge_Bases = (req, res, next) => {
+    dbClient.query("SELECT * FROM knowledge_Base", (err, response) => {
     if (err) {
       res.status(400).json({
         message: `Error: ${err.message}`,
@@ -75,6 +78,6 @@ const getDepartments = (req, res, next) => {
 
 
 module.exports = {
-  addDepartment,
-  getDepartments
+  addKnowledge_Base,
+  getKnowledge_Bases
 };
