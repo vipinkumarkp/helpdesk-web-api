@@ -17,6 +17,7 @@ const brandRouter = require('../api/brand/brandRoute')
 const departmentRouter = require("../api/department/departmentRoute")
 const assetRouter = require("../api/asset/assetRoute")
 const knowledgeBaseRouter = require("../api/knowledgeBase/knowledgeBaseRoute")
+const privacyPolicyRouter = require("../api/privacyPolicy/privacyPolicyRoute")
 
 const authentication = require('../api/middleware/authentication')
 const app = express()
@@ -56,6 +57,7 @@ app.use('/api/v1/brand', brandRouter)
 app.use('/api/v1/department', departmentRouter)
 app.use('/api/v1/asset', assetRouter)
 app.use('/api/v1/knowledgeBase', knowledgeBaseRouter)
+app.use('/api/v1/privacyPolicy', privacyPolicyRouter)
 
 
 // Back-end server connection
