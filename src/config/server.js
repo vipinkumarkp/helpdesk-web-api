@@ -45,8 +45,8 @@ app.get('/', (req, res)=> {
     res.sendFile(__dirname + '/index.html')
 })
 
-app.use('/api/v1/users', userRouter),
-app.use('/api/v1/admin', adminRouter),
+// app.use('/api/v1/users', userRouter),
+// app.use('/api/v1/admin', adminRouter),
 // app.use('/api/v1/customers', customerRouter),
 // app.use('/api/v1/technicians', authentication.tech_authenticate, technicianRouter)
 // app.use('/api/v1/technicians', technicianRouter)
