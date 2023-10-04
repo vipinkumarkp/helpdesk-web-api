@@ -8,7 +8,6 @@ const loginUser = (req, res, next) => {
   var empId = req.body.emp_id,
     pwd = req.body.password;
 
-
   if (empId === "" || pwd === "") {
     res.status(400).json({
       message: "Employee ID or Password is incorrect",
@@ -23,8 +22,8 @@ const loginUser = (req, res, next) => {
         console.log("Error:", err);
       }
 
-      if (result.rows[0].password === pwd) {
-        if (result.rows[0].user_type === '1') {
+      if (result?.rows[0]?.password === pwd) {
+        if (Number(result?.rows[0]?.user_type) === 1) {
           let token = jwt.sign({ name: result.rows[0].phone }, "admin", {
             expiresIn: "1h",
           });
@@ -47,7 +46,7 @@ const loginUser = (req, res, next) => {
 
                     res.status(200).json({
                       message: "Login successfull with ADMIN role",
-                      status:1,
+                      status: 1,
                       data: {
                         userID: updtResp.rows[0].id,
                         empID: updtResp.rows[0].emp_id,
@@ -64,7 +63,7 @@ const loginUser = (req, res, next) => {
               }
             }
           );
-        } else if (result.rows[0].user_type === '2') {
+        } else if (Number(result?.rows[0]?.user_type) === 2) {
           let token = jwt.sign({ name: result.rows[0].phone }, "user", {
             expiresIn: "1h",
           });
@@ -87,7 +86,7 @@ const loginUser = (req, res, next) => {
 
                     res.status(200).json({
                       message: "Login successfull with USER role",
-                      status:1,
+                      status: 1,
                       data: {
                         userID: updtResp.rows[0].id,
                         empID: updtResp.rows[0].emp_id,
@@ -104,7 +103,7 @@ const loginUser = (req, res, next) => {
               }
             }
           );
-        } else if (result.rows[0].user_type === '3') {
+        } else if (Number(result?.rows[0]?.user_type) === 3) {
           let token = jwt.sign({ name: result.rows[0].phone }, "technician", {
             expiresIn: "1h",
           });
@@ -127,7 +126,7 @@ const loginUser = (req, res, next) => {
 
                     res.status(200).json({
                       message: "Login successfull with TECHNICIAN role",
-                      status:1,
+                      status: 1,
                       data: {
                         userID: updtResp.rows[0].id,
                         empID: updtResp.rows[0].emp_id,
@@ -140,7 +139,7 @@ const loginUser = (req, res, next) => {
               } else {
                 res.status(400).json({
                   message: "Somthing went wrong!",
-                  status:0
+                  status: 0,
                 });
               }
             }
@@ -149,7 +148,7 @@ const loginUser = (req, res, next) => {
       } else {
         res.status(400).json({
           message: "ERROR! Password is incorrect",
-          status:0
+          status: 0,
         });
       }
     }
