@@ -47,9 +47,17 @@ app.get('/', (req, res)=> {
 
 app.use('/api/v1/users', userRouter),
 app.use('/api/v1/admin', adminRouter),
-app.use('/api/v1/customers', customerRouter),
+// app.use('/api/v1/customers', customerRouter),
 // app.use('/api/v1/technicians', authentication.tech_authenticate, technicianRouter)
-app.use('/api/v1/technicians', technicianRouter)
+// app.use('/api/v1/technicians', technicianRouter)
+
+
+app.use('/api/v1/users', userRouter),
+app.use('/api/v1/admin', adminRouter),
+app.use('/api/v1/customers', authentication.user_authenticate, customerRouter),
+app.use('/api/v1/technicians', authentication.tech_authenticate, technicianRouter)
+
+
 
 app.use('/api/v1/employee', employeeRouter)
 app.use('/api/v1/category', categoryRouter)
